@@ -1,0 +1,1 @@
+# ontains abstract definitions of contracts — i.e., the “blueprints” that classes in services/
