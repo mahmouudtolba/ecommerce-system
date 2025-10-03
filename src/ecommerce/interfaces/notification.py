@@ -1,3 +1,5 @@
+"""Module defining the NotificationSender interface for sending notifications."""
+
 from abc import ABC , abstractmethod
 
 class NotificationSender(ABC):
@@ -7,4 +9,3 @@ class NotificationSender(ABC):
     def send_notification(self , recipient:str , message:str) -> bool:
         """Send notification and return success status"""
         pass
-    

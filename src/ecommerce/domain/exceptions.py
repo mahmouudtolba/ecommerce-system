@@ -1,3 +1,5 @@
+
+
 class EcommerceException(Exception):
     """Base exception for ecommerce system"""
     pass
