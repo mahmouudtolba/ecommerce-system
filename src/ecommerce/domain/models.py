@@ -16,7 +16,7 @@ from datetime import datetime
 class Product: # pylint: disable=missing-class-docstring
     id:str
     name:str
-    price:str
+    price:float
     stock_quantity:int
 
 

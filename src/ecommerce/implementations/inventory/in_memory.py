@@ -16,16 +16,17 @@ class InMemoryInventoryManager(InventoryManager):
     def check_availability(self, product_id: str, quantity: int) -> bool:
         availabe = self.inventory.get(product_id , 0)
         return availabe >= quantity
-    
+
     def reserve_stock(self, product_id: str, quantity: int) -> bool:
         if self.check_availability(product_id , quantity):
             self.inventory[product_id] -= quantity
-            logger.info(f"Reserved {quantity} units of product {product_id}")
+            logger.info("Reserved %s units of product %s", quantity, product_id)
             return True
-        logger.error(f"Insufficient stock for product {product_id}")
+
+        logger.error("Insufficient stock for product %s", product_id)
         return False
-    
+
     def return_stock(self, product_id: str, quantity: int) -> bool:
         self.inventory[product_id] = self.inventory.get(product_id , 0) + quantity
-        logger.info(f"Returning {quantity} units of product {product_id}")
+        logger.info("Returning %s units of product %s", quantity, product_id)
         return True

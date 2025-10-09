@@ -12,6 +12,7 @@ class CreditCardProcessor(PaymentProcessor):
         if len(card_number) <4:
             logger.error("Invalid card number")
             return False
-        logger.info(f"Processing credit card payment: ${amount} with card ending in {card_number[-4:]}")
+
+        logger.info("Processing credit card payment: $%s with card ending in %s", amount, card_number[-4:])
         # Simulate payment processing
         return True

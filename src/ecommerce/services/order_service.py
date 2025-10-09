@@ -67,15 +67,16 @@ class OrderService:
                 message = f"Order {order.id} confirmed. Total: ${pricing['total']:.2f}"
                 self._notification_sender.send_notification(order.customer_email , message)
 
-                logger.info(f"Order {order.id} successfully processed!")
+                logger.info("Order %s successfully processed!", order.id)
                 return True
+
             except Exception as e:
                 # Rollback inventory reservations on any failure after reservation
                 self._release_all_reservation(order.items)
                 raise e
 
         except Exception as e:
-            logger.error(f"Order processing failed: {str(e)}")
+            logger.error("Order processing failed: %s", str(e))
             return False
 
 
@@ -106,7 +107,7 @@ class OrderService:
             return True
 
         except Exception as e:
-            logger.error(f"Order cancellation failed :{str(e)}")
+            logger.error("Order cancellation failed :%s", str(e))
             return False
 
 
@@ -126,19 +127,7 @@ class OrderService:
                     reserved_items.append(item)
                 else:
                     raise InvalidOrderException(f"Could not reserve stock for {item.product.name}")
-                
+
         except Exception:
             for item in reserved_items:
                 self._inventory_manager.return_stock(item.product.id , item.quantity)
-
-        
-
-        
-
-
-
-
-            
-        
-
-

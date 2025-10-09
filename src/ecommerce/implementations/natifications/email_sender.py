@@ -1,3 +1,4 @@
+"""A module for sending notification using email"""
 import logging
 from ecommerce.interfaces.notification import NotificationSender
 
@@ -8,8 +9,8 @@ class EmailNotificationSender(NotificationSender):
 
     def send_notification(self, recipient: str, message: str) -> bool:
         if '@' not in recipient:
-            logger.error(f"Invalid email address: {recipient}")
+            logger.error("Invalid email address: %s", recipient)
             return False
-        logger.info(f"Sending email to {recipient}: {message}")
+        logger.info("Sending email to %s : %s", recipient, message)
         # Here you would integrate with actual email service like sendGrid
         return True
